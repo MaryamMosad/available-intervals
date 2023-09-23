@@ -9,6 +9,34 @@ exports.testSamples = {
     busyIntervals: [{ start: 1695225600000, end: 1695232800000 }],
     availableIntervals: [{ start: 1695204000000, end: 1695225600000 }],
   },
+  "booking one appointment at the start and one at the end": {
+    originalIntervals: [{ start: 1695204000000, end: 1695232800000 }],
+    busyIntervals: [
+      { start: 1695204000000, end: 1695207600000 },
+      { start: 1695225600000, end: 1695232800000 },
+    ],
+    availableIntervals: [{ start: 1695207600000, end: 1695225600000 }],
+  },
+  "booking one appointment at the start and one at the end with two available shifts":
+    {
+      originalIntervals: [
+        { start: 1695168000000, end: 1695178800000 },
+        { start: 1695204000000, end: 1695232800000 },
+      ],
+      busyIntervals: [
+        { start: 1695204000000, end: 1695207600000 },
+        { start: 1695225600000, end: 1695232800000 },
+      ],
+      availableIntervals: [
+        { start: 1695168000000, end: 1695178800000 },
+        { start: 1695207600000, end: 1695225600000 },
+      ],
+    },
+  "booking the whole available shift": {
+    originalIntervals: [{ start: 1695204000000, end: 1695232800000 }],
+    busyIntervals: [{ start: 1695204000000, end: 1695232800000 }],
+    availableIntervals: [],
+  },
   "booking appointment at the middle of the shifts": {
     originalIntervals: [{ start: 1695204000000, end: 1695232800000 }],
     busyIntervals: [{ start: 1695207600000, end: 1695214800000 }],
