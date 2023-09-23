@@ -52,6 +52,18 @@ exports.testSamples = {
     busyIntervals: [{ start: 1695200400000, end: 1695232800000 }],
     availableIntervals: [],
   },
+  "booking appointments that exceed the available shifts start but before the end":
+    {
+      originalIntervals: [{ start: 1695204000000, end: 1695232800000 }],
+      busyIntervals: [{ start: 1695200400000, end: 1695229200000 }],
+      availableIntervals: [{ start: 1695229200000, end: 1695232800000 }],
+    },
+  "booking appointments that exceed the available shifts end but after the start":
+    {
+      originalIntervals: [{ start: 1695204000000, end: 1695232800000 }],
+      busyIntervals: [{ start: 1695207600000, end: 1695236400000 }],
+      availableIntervals: [{ start: 1695204000000, end: 1695207600000 }],
+    },
   "booking appointment at the middle of the shifts": {
     originalIntervals: [{ start: 1695204000000, end: 1695232800000 }],
     busyIntervals: [{ start: 1695207600000, end: 1695214800000 }],

@@ -7,12 +7,8 @@ exports.extractAvailableIntervals = (originalIntervals, busyIntervals) => {
       const currentBusyShift = busyIntervals[i];
       const nextBusyShift = busyIntervals[i + 1];
 
-      if (
-        areIntervalsIdentical(currentBusyShift, originalInterval) ||
-        isTheWholeIntervalCovered(currentBusyShift, originalInterval)
-      ) {
+      if (isTheWholeIntervalCovered(currentBusyShift, originalInterval))
         continue;
-      }
 
       if (!areShiftsOverlapping(currentBusyShift, originalInterval)) {
         noOfNonOverlappingBusyIntervals++;
@@ -33,17 +29,17 @@ exports.extractAvailableIntervals = (originalIntervals, busyIntervals) => {
       )
         endOfAvailableShift = nextBusyShift.start;
 
-      if (originalInterval.start === currentBusyShift.start) {
+      if (originalInterval.start >= currentBusyShift.start) {
         startOfAvailableShift = currentBusyShift.end;
       }
 
-      if (originalInterval.end === currentBusyShift.end) {
+      if (originalInterval.end <= currentBusyShift.end) {
         endOfAvailableShift = currentBusyShift.start;
       }
 
       if (
-        currentBusyShift.start === originalInterval.start ||
-        originalInterval.end === currentBusyShift.end
+        originalInterval.start >= currentBusyShift.start ||
+        originalInterval.end <= currentBusyShift.end
       ) {
         pushIntervalToFinalAvailableIntervals(finalAvailableIntervals, {
           start: startOfAvailableShift,
@@ -84,15 +80,9 @@ exports.extractAvailableIntervals = (originalIntervals, busyIntervals) => {
 function areShiftsOverlapping(firstShift, secondShift) {
   return (
     (firstShift.start >= secondShift.start &&
-      firstShift.start < secondShift.end) ||
+      firstShift.start <= secondShift.end) ||
     (secondShift.start >= firstShift.start &&
-      secondShift.end < firstShift.start)
-  );
-}
-
-function areIntervalsIdentical(firstShift, secondShift) {
-  return (
-    firstShift.start === secondShift.start && firstShift.end === secondShift.end
+      secondShift.end <= firstShift.start)
   );
 }
 
@@ -116,8 +106,8 @@ function pushIntervalToFinalAvailableIntervals(
 
 function isTheWholeIntervalCovered(currentInterval, originalInterval) {
   return (
-    (currentInterval.start < originalInterval.start &&
-      currentInterval.end > originalInterval.end) ||
+    (currentInterval.start <= originalInterval.start &&
+      currentInterval.end >= originalInterval.end) ||
     (currentInterval.start === originalInterval.start &&
       currentInterval.end > originalInterval.end) ||
     (currentInterval.end === originalInterval.end &&
