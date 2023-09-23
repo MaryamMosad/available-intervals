@@ -37,6 +37,21 @@ exports.testSamples = {
     busyIntervals: [{ start: 1695204000000, end: 1695232800000 }],
     availableIntervals: [],
   },
+  "booking appointments that exceed the available shifts from both sides": {
+    originalIntervals: [{ start: 1695204000000, end: 1695232800000 }],
+    busyIntervals: [{ start: 1695200400000, end: 1695236400000 }],
+    availableIntervals: [],
+  },
+  "booking appointments that exceed the available shifts end ": {
+    originalIntervals: [{ start: 1695204000000, end: 1695232800000 }],
+    busyIntervals: [{ start: 1695204000000, end: 1695236400000 }],
+    availableIntervals: [],
+  },
+  "booking appointments that exceed the available shifts start": {
+    originalIntervals: [{ start: 1695204000000, end: 1695232800000 }],
+    busyIntervals: [{ start: 1695200400000, end: 1695232800000 }],
+    availableIntervals: [],
+  },
   "booking appointment at the middle of the shifts": {
     originalIntervals: [{ start: 1695204000000, end: 1695232800000 }],
     busyIntervals: [{ start: 1695207600000, end: 1695214800000 }],
@@ -73,10 +88,10 @@ exports.testSamples = {
         { start: 1695164400000, end: 1695243600000 },
       ],
       busyIntervals: [
-        { startInTimeStamp: 1695204000000, endInTimeStamp: 1695208200000 },
-        { startInTimeStamp: 1695208500000, endInTimeStamp: 1695210900000 },
-        { startInTimeStamp: 1695211200000, endInTimeStamp: 1695217200000 },
-        { startInTimeStamp: 1695224400000, endInTimeStamp: 1695228900000 },
+        { start: 1695204000000, end: 1695208200000 },
+        { start: 1695208500000, end: 1695210900000 },
+        { start: 1695211200000, end: 1695217200000 },
+        { start: 1695224400000, end: 1695228900000 },
       ],
       availableIntervals: [
         { start: 1695160800000, end: 1695162600000 },
