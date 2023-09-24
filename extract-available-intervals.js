@@ -10,7 +10,7 @@ exports.extractAvailableIntervals = (originalIntervals, busyIntervals) => {
       if (isTheWholeIntervalCovered(currentBusyShift, originalInterval))
         continue;
 
-      if (!areShiftsOverlapping(currentBusyShift, originalInterval)) {
+      if (!areIntervalsOverlapping(currentBusyShift, originalInterval)) {
         noOfNonOverlappingBusyIntervals++;
         continue;
       }
@@ -19,13 +19,13 @@ exports.extractAvailableIntervals = (originalIntervals, busyIntervals) => {
 
       if (
         previousShift &&
-        areShiftsOverlapping(previousShift, originalInterval)
+        areIntervalsOverlapping(previousShift, originalInterval)
       )
         startOfAvailableShift = previousShift.end;
 
       if (
         nextBusyShift &&
-        areShiftsOverlapping(nextBusyShift, originalInterval)
+        areIntervalsOverlapping(nextBusyShift, originalInterval)
       )
         endOfAvailableShift = nextBusyShift.start;
 
@@ -77,12 +77,12 @@ exports.extractAvailableIntervals = (originalIntervals, busyIntervals) => {
   return finalAvailableIntervals;
 };
 
-function areShiftsOverlapping(firstShift, secondShift) {
+function areIntervalsOverlapping(firstShift, secondShift) {
   return (
     (firstShift.start >= secondShift.start &&
       firstShift.start <= secondShift.end) ||
     (secondShift.start >= firstShift.start &&
-      secondShift.end <= firstShift.start)
+      secondShift.start <= firstShift.end)
   );
 }
 
@@ -106,11 +106,11 @@ function pushIntervalToFinalAvailableIntervals(
 
 function isTheWholeIntervalCovered(currentInterval, originalInterval) {
   return (
-    (currentInterval.start <= originalInterval.start &&
-      currentInterval.end >= originalInterval.end) ||
-    (currentInterval.start === originalInterval.start &&
-      currentInterval.end > originalInterval.end) ||
-    (currentInterval.end === originalInterval.end &&
-      currentInterval.start < originalInterval.start)
+    currentInterval.start <= originalInterval.start &&
+    currentInterval.end >= originalInterval.end
+    // ||(currentInterval.start === originalInterval.start &&
+    //   currentInterval.end > originalInterval.end) ||
+    // (currentInterval.end === originalInterval.end &&
+    //   currentInterval.start < originalInterval.start)
   );
 }
