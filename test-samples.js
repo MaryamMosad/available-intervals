@@ -1,125 +1,194 @@
 exports.testSamples = {
   "booking the start of the interval": {
-    originalIntervals: [{ start: 1695204000000, end: 1695232800000 }],
-    busyIntervals: [{ start: 1695204000000, end: 1695207600000 }],
-    availableIntervals: [{ start: 1695207600000, end: 1695232800000 }],
+    originalIntervals: [
+      { start: "2024-01-05T14:00:00Z", end: "2024-01-05T22:00:00Z" },
+    ],
+    busyIntervals: [
+      { start: "2024-01-05T14:00:00Z", end: "2024-01-05T15:00:00Z" },
+    ],
+    availableIntervals: [
+      { start: "2024-01-05T15:00:00Z", end: "2024-01-05T22:00:00Z" },
+    ],
   },
   "booking appointment that starts at the end of the interval": {
-    originalIntervals: [{ start: 1695204000000, end: 1695232800000 }],
-    busyIntervals: [{ start: 1695232800000, end: 1695236400000 }],
-    availableIntervals: [{ start: 1695204000000, end: 1695232800000 }],
+    originalIntervals: [
+      { start: "2024-01-05T14:00:00Z", end: "2024-01-05T22:00:00Z" },
+    ],
+    busyIntervals: [
+      { start: "2024-01-05T22:00:00Z", end: "2024-01-05T23:00:00Z" },
+    ],
+    availableIntervals: [
+      { start: "2024-01-05T14:00:00Z", end: "2024-01-05T22:00:00Z" },
+    ],
   },
   "booking appointment that ends at the start of the interval": {
-    originalIntervals: [{ start: 1695204000000, end: 1695232800000 }],
-    busyIntervals: [{ start: 1695200400000, end: 1695204000000 }],
-    availableIntervals: [{ start: 1695204000000, end: 1695232800000 }],
+    originalIntervals: [
+      { start: "2024-01-05T14:00:00Z", end: "2024-01-05T22:00:00Z" },
+    ],
+    busyIntervals: [
+      { start: "2024-01-05T13:00:00Z", end: "2024-01-05T14:00:00Z" },
+    ],
+    availableIntervals: [
+      { start: "2024-01-05T14:00:00Z", end: "2024-01-05T22:00:00Z" },
+    ],
   },
   "booking the end of the interval": {
-    originalIntervals: [{ start: 1695204000000, end: 1695232800000 }],
-    busyIntervals: [{ start: 1695225600000, end: 1695232800000 }],
-    availableIntervals: [{ start: 1695204000000, end: 1695225600000 }],
+    originalIntervals: [
+      { start: "2024-01-05T14:00:00Z", end: "2024-01-05T22:00:00Z" },
+    ],
+    busyIntervals: [
+      { start: "2024-01-05T20:00:00Z", end: "2024-01-05T22:00:00Z" },
+    ],
+    availableIntervals: [
+      { start: "2024-01-05T14:00:00Z", end: "2024-01-05T20:00:00Z" },
+    ],
   },
   "booking the start and end of the interval": {
-    originalIntervals: [{ start: 1695204000000, end: 1695232800000 }],
-    busyIntervals: [
-      { start: 1695204000000, end: 1695207600000 },
-      { start: 1695225600000, end: 1695232800000 },
+    originalIntervals: [
+      { start: "2024-01-05T14:00:00Z", end: "2024-01-05T22:00:00Z" },
     ],
-    availableIntervals: [{ start: 1695207600000, end: 1695225600000 }],
+    busyIntervals: [
+      { start: "2024-01-05T14:00:00Z", end: "2024-01-05T15:00:00Z" },
+      { start: "2024-01-05T20:00:00Z", end: "2024-01-05T22:00:00Z" },
+    ],
+    availableIntervals: [
+      { start: "2024-01-05T15:00:00Z", end: "2024-01-05T20:00:00Z" },
+    ],
   },
   "booking the start and end of the interval with two original intervals": {
     originalIntervals: [
-      { start: 1695168000000, end: 1695178800000 },
-      { start: 1695204000000, end: 1695232800000 },
+      { start: "2024-01-05T08:00:00Z", end: "2024-01-05T10:00:00Z" },
+      { start: "2024-01-05T14:00:00Z", end: "2024-01-05T22:00:00Z" },
     ],
     busyIntervals: [
-      { start: 1695204000000, end: 1695207600000 },
-      { start: 1695225600000, end: 1695232800000 },
+      { start: "2024-01-05T14:00:00Z", end: "2024-01-05T15:00:00Z" },
+      { start: "2024-01-05T18:00:00Z", end: "2024-01-05T22:00:00Z" },
     ],
     availableIntervals: [
-      { start: 1695168000000, end: 1695178800000 },
-      { start: 1695207600000, end: 1695225600000 },
+      { start: "2024-01-05T08:00:00Z", end: "2024-01-05T10:00:00Z" },
+      { start: "2024-01-05T15:00:00Z", end: "2024-01-05T18:00:00Z" },
     ],
   },
   "booking the whole original interval": {
-    originalIntervals: [{ start: 1695204000000, end: 1695232800000 }],
-    busyIntervals: [{ start: 1695204000000, end: 1695232800000 }],
+    originalIntervals: [
+      { start: "2024-01-05T14:00:00Z", end: "2024-01-05T22:00:00Z" },
+    ],
+    busyIntervals: [
+      { start: "2024-01-05T14:00:00Z", end: "2024-01-05T22:00:00Z" },
+    ],
     availableIntervals: [],
   },
   "booking appointments that exceed the original interval from both sides": {
-    originalIntervals: [{ start: 1695204000000, end: 1695232800000 }],
-    busyIntervals: [{ start: 1695200400000, end: 1695236400000 }],
+    originalIntervals: [
+      { start: "2024-01-05T14:00:00Z", end: "2024-01-05T22:00:00Z" },
+    ],
+    busyIntervals: [
+      { start: "2024-01-05T13:00:00Z", end: "2024-01-05T23:00:00Z" },
+    ],
     availableIntervals: [],
   },
   "booking appointments that exceed the original interval end": {
-    originalIntervals: [{ start: 1695204000000, end: 1695232800000 }],
-    busyIntervals: [{ start: 1695204000000, end: 1695236400000 }],
+    originalIntervals: [
+      { start: "2024-01-05T14:00:00Z", end: "2024-01-05T22:00:00Z" },
+    ],
+    busyIntervals: [
+      { start: "2024-01-05T14:00:00Z", end: "2024-01-05T23:00:00Z" },
+    ],
     availableIntervals: [],
   },
   "booking appointments that exceed the original interval start": {
-    originalIntervals: [{ start: 1695204000000, end: 1695232800000 }],
-    busyIntervals: [{ start: 1695200400000, end: 1695232800000 }],
+    originalIntervals: [
+      { start: "2024-01-05T14:00:00Z", end: "2024-01-05T22:00:00Z" },
+    ],
+    busyIntervals: [
+      { start: "2024-01-05T13:00:00Z", end: "2024-01-05T22:00:00Z" },
+    ],
     availableIntervals: [],
   },
   "booking appointments that exceed the original interval start but before the end":
     {
-      originalIntervals: [{ start: 1695204000000, end: 1695232800000 }],
-      busyIntervals: [{ start: 1695200400000, end: 1695229200000 }],
-      availableIntervals: [{ start: 1695229200000, end: 1695232800000 }],
+      originalIntervals: [
+        { start: "2024-01-05T14:00:00Z", end: "2024-01-05T22:00:00Z" },
+      ],
+      busyIntervals: [
+        { start: "2024-01-05T13:00:00Z", end: "2024-01-05T20:00:00Z" },
+      ],
+      availableIntervals: [
+        { start: "2024-01-05T20:00:00Z", end: "2024-01-05T22:00:00Z" },
+      ],
     },
   "booking appointments that exceed the original interval end but after the start":
     {
-      originalIntervals: [{ start: 1695204000000, end: 1695232800000 }],
-      busyIntervals: [{ start: 1695207600000, end: 1695236400000 }],
-      availableIntervals: [{ start: 1695204000000, end: 1695207600000 }],
+      originalIntervals: [
+        { start: "2024-01-05T14:00:00Z", end: "2024-01-05T22:00:00Z" },
+      ],
+      busyIntervals: [
+        { start: "2024-01-05T15:00:00Z", end: "2024-01-05T23:00:00Z" },
+      ],
+      availableIntervals: [
+        { start: "2024-01-05T14:00:00Z", end: "2024-01-05T15:00:00Z" },
+      ],
     },
   "booking at the middle of the interval": {
-    originalIntervals: [{ start: 1695204000000, end: 1695232800000 }],
-    busyIntervals: [{ start: 1695207600000, end: 1695214800000 }],
+    originalIntervals: [
+      { start: "2024-01-05T14:00:00Z", end: "2024-01-05T22:00:00Z" },
+    ],
+    busyIntervals: [
+      { start: "2024-01-05T15:00:00Z", end: "2024-01-05T17:00:00Z" },
+    ],
     availableIntervals: [
-      { start: 1695204000000, end: 1695207600000 },
-      { start: 1695214800000, end: 1695232800000 },
+      { start: "2024-01-05T14:00:00Z", end: "2024-01-05T15:00:00Z" },
+      { start: "2024-01-05T17:00:00Z", end: "2024-01-05T22:00:00Z" },
     ],
   },
   "booking outside the range of the interval": {
-    originalIntervals: [{ start: 1695204000000, end: 1695232800000 }],
-    busyIntervals: [{ start: 1695236400000, end: 1695240000000 }],
-    availableIntervals: [{ start: 1695204000000, end: 1695232800000 }],
+    originalIntervals: [
+      { start: "2024-01-05T14:00:00Z", end: "2024-01-05T22:00:00Z" },
+    ],
+    busyIntervals: [
+      { start: "2024-01-05T23:00:00Z", end: "2024-01-06T00:00:00Z" },
+    ],
+    availableIntervals: [
+      { start: "2024-01-05T14:00:00Z", end: "2024-01-05T22:00:00Z" },
+    ],
   },
   "multiple booked intervals in all original intervals": {
     originalIntervals: [
-      { start: 1695168000000, end: 1695178800000 },
-      { start: 1695204000000, end: 1695232800000 },
+      { start: "2024-01-04T14:00:00Z", end: "2024-01-04T22:00:00Z" },
+      { start: "2024-01-05T14:00:00Z", end: "2024-01-05T22:00:00Z" },
     ],
     busyIntervals: [
-      { start: 1695171600000, end: 1695173400000 },
-      { start: 1695218400000, end: 1695222000000 },
+      { start: "2024-01-04T14:00:00Z", end: "2024-01-04T14:30:00Z" },
+      { start: "2024-01-04T16:00:00Z", end: "2024-01-04T18:00:00Z" },
+      { start: "2024-01-05T15:00:00Z", end: "2024-01-05T16:00:00Z" },
+      { start: "2024-01-05T18:00:00Z", end: "2024-01-05T20:00:00Z" },
     ],
     availableIntervals: [
-      { start: 1695168000000, end: 1695171600000 },
-      { start: 1695173400000, end: 1695178800000 },
-      { start: 1695204000000, end: 1695218400000 },
-      { start: 1695222000000, end: 1695232800000 },
+      { start: "2024-01-04T14:30:00Z", end: "2024-01-04T16:00:00Z" },
+      { start: "2024-01-04T18:00:00Z", end: "2024-01-04T22:00:00Z" },
+      { start: "2024-01-05T14:00:00Z", end: "2024-01-05T15:00:00Z" },
+      { start: "2024-01-05T16:00:00Z", end: "2024-01-05T18:00:00Z" },
+      { start: "2024-01-05T20:00:00Z", end: "2024-01-05T22:00:00Z" },
     ],
   },
   "multiple booked intervals inside only one of the original intervals": {
     originalIntervals: [
-      { start: 1695160800000, end: 1695162600000 },
-      { start: 1695164400000, end: 1695243600000 },
+      { start: "2024-01-04T14:00:00Z", end: "2024-01-04T22:00:00Z" },
+      { start: "2024-01-05T14:00:00Z", end: "2024-01-05T22:00:00Z" },
     ],
     busyIntervals: [
-      { start: 1695204000000, end: 1695208200000 },
-      { start: 1695208500000, end: 1695210900000 },
-      { start: 1695211200000, end: 1695217200000 },
-      { start: 1695224400000, end: 1695228900000 },
+      { start: "2024-01-05T15:00:00Z", end: "2024-01-05T15:30:00Z" },
+      { start: "2024-01-05T16:00:00Z", end: "2024-01-05T16:30:00Z" },
+      { start: "2024-01-05T17:00:00Z", end: "2024-01-05T18:00:00Z" },
+      { start: "2024-01-05T19:00:00Z", end: "2024-01-05T19:30:00Z" },
     ],
     availableIntervals: [
-      { start: 1695160800000, end: 1695162600000 },
-      { start: 1695164400000, end: 1695204000000 },
-      { start: 1695208200000, end: 1695208500000 },
-      { start: 1695210900000, end: 1695211200000 },
-      { start: 1695217200000, end: 1695224400000 },
-      { start: 1695228900000, end: 1695243600000 },
+      { start: "2024-01-04T14:00:00Z", end: "2024-01-04T22:00:00Z" },
+      { start: "2024-01-05T14:00:00Z", end: "2024-01-05T15:00:00Z" },
+      { start: "2024-01-05T15:30:00Z", end: "2024-01-05T16:00:00Z" },
+      { start: "2024-01-05T16:30:00Z", end: "2024-01-05T17:00:00Z" },
+      { start: "2024-01-05T18:00:00Z", end: "2024-01-05T19:00:00Z" },
+      { start: "2024-01-05T19:30:00Z", end: "2024-01-05T22:00:00Z" },
     ],
   },
 };

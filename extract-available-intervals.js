@@ -1,3 +1,8 @@
+/**
+ * @param {Array<{start: number, end: number}>} originalIntervals - The original intervals.
+ * @param {Array<{start: number, end: number}>} busyIntervals - The busy intervals.
+ * @returns {Array<{start: number, end: number}>} An array of available intervals.
+ */
 exports.extractAvailableIntervals = (originalIntervals, busyIntervals) => {
   const finalAvailableIntervals = [];
   for (const originalInterval of originalIntervals) {

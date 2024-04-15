@@ -11,8 +11,8 @@ for (let testSample in testSamples) {
   const IntervalsToCheck = testSamples[testSample];
   test(`${testSample}`, () => {
     const availableIntervals = extractAvailableIntervals(
-      IntervalsToCheck.originalIntervals,
-      IntervalsToCheck.busyIntervals
+      convertDatesToTimestamp(IntervalsToCheck.originalIntervals),
+      convertDatesToTimestamp(IntervalsToCheck.busyIntervals)
     );
 
     assert.strictEqual(
@@ -20,8 +20,21 @@ for (let testSample in testSamples) {
       IntervalsToCheck.availableIntervals.length
     );
     IntervalsToCheck.availableIntervals.forEach((interval, index) => {
-      assert.strictEqual(interval.start, availableIntervals[index].start);
-      assert.strictEqual(interval.end, availableIntervals[index].end);
+      assert.strictEqual(
+        new Date(interval.start).getTime(),
+        availableIntervals[index].start
+      );
+      assert.strictEqual(
+        new Date(interval.end).getTime(),
+        availableIntervals[index].end
+      );
     });
   });
+}
+
+function convertDatesToTimestamp(intervals) {
+  return intervals.map((interval) => ({
+    start: new Date(interval.start).getTime(),
+    end: new Date(interval.end).getTime(),
+  }));
 }
