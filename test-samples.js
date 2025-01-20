@@ -141,6 +141,20 @@ exports.testSamples = {
       { start: "2024-01-05T17:00:00Z", end: "2024-01-05T22:00:00Z" },
     ],
   },
+  "booking at the middle of the interval - non divisible by 5 mins": {
+    originalIntervals: [
+      { start: "2024-01-05T14:00:00Z", end: "2024-01-05T22:00:00Z" },
+    ],
+    busyIntervals: [
+      { start: "2024-01-05T15:03:00Z", end: "2024-01-05T17:03:00Z" },
+      { start: "2024-01-05T20:59:00Z", end: "2024-01-05T21:29:00Z" },
+    ],
+    availableIntervals: [
+      { start: "2024-01-05T14:00:00Z", end: "2024-01-05T15:03:00Z" },
+      { start: "2024-01-05T17:05:00Z", end: "2024-01-05T20:59:00Z" },
+      { start: "2024-01-05T21:30:00Z", end: "2024-01-05T22:00:00Z" },
+    ],
+  },
   "booking outside the range of the interval": {
     originalIntervals: [
       { start: "2024-01-05T14:00:00Z", end: "2024-01-05T22:00:00Z" },

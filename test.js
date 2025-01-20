@@ -1,11 +1,10 @@
 const test = require("node:test");
 
-const assert = require("node:assert");
+const { strictEqual } = require("node:assert");
 
-const extractAvailableIntervals =
-  require("./extract-available-intervals").extractAvailableIntervals;
+const { extractAvailableIntervals } = require("./extract-available-intervals");
 
-const testSamples = require("./test-samples").testSamples;
+const { testSamples } = require("./test-samples");
 
 for (let testSample in testSamples) {
   const IntervalsToCheck = testSamples[testSample];
@@ -15,18 +14,18 @@ for (let testSample in testSamples) {
       convertDatesToTimestamp(IntervalsToCheck.busyIntervals)
     );
 
-    assert.strictEqual(
+    strictEqual(
       availableIntervals.length,
       IntervalsToCheck.availableIntervals.length
     );
     IntervalsToCheck.availableIntervals.forEach((interval, index) => {
-      assert.strictEqual(
-        new Date(interval.start).getTime(),
-        availableIntervals[index].start
+      strictEqual(
+        availableIntervals[index].start,
+        new Date(interval.start).getTime()
       );
-      assert.strictEqual(
-        new Date(interval.end).getTime(),
-        availableIntervals[index].end
+      strictEqual(
+        availableIntervals[index].end,
+        new Date(interval.end).getTime()
       );
     });
   });

@@ -1,3 +1,7 @@
+const {
+  transformTimeToFiveMinutesMark,
+} = require("./five-minute-mark/five-minute-mark");
+
 /**
  * @param {Array<{start: number, end: number}>} originalIntervals - The original intervals.
  * @param {Array<{start: number, end: number}>} busyIntervals - The busy intervals.
@@ -95,15 +99,18 @@ function pushIntervalToFinalAvailableIntervals(
   availableIntervals,
   intervalToAdd
 ) {
+  const intervalModifiedStart = transformTimeToFiveMinutesMark(
+    intervalToAdd.start
+  ).dateAfterModification;
   if (
     !availableIntervals.find(
       (interval) =>
-        interval.start === intervalToAdd.start &&
+        interval.start === intervalModifiedStart &&
         interval.end === intervalToAdd.end
     )
   ) {
     availableIntervals.push({
-      start: intervalToAdd.start,
+      start: intervalModifiedStart,
       end: intervalToAdd.end,
     });
   }
